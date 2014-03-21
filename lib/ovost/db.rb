@@ -4,10 +4,13 @@ class OVOST::Database
 
   def initialize
     @links_created = 0
+    @links = {}
   end
-
 
   def gen_id
     @links_created.to_s(36)
   end
+
+
+
 end
