@@ -1,11 +1,13 @@
 class OVOST::Database
 
-  def intialize
-    @link_count = 0
+  attr_reader :links_created
+
+  def initialize
+    @links_created = 0
   end
 
+
   def gen_id
-    @link_count += 1
-    (@link_count - 1).to_s(36)
+    @links_created.to_s(36)
   end
 end
