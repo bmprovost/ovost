@@ -1,0 +1,3 @@
+class OVOST::User
+
+end
