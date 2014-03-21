@@ -1,10 +1,10 @@
 class OVOST::Link
-  attr_reader :destination_url, :click_count
+  attr_reader :destination_url
 
   def initialize(short_id, destination_url, user=nil)
     @short_id = short_id
     @user = user
-    @click_count = 0
+    @clicks = []
 
     if (destination_url.length < 5)
       @destination_url = "http://ovo.st"
@@ -17,7 +17,11 @@ class OVOST::Link
   end
 
   def click
-    @click_count += 1
+    @clicks.push(0)
     @destination_url
+  end
+
+  def click_count
+    @clicks.count
   end
 end
