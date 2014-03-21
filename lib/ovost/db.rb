@@ -1,6 +1,6 @@
 class OVOST::Database
 
-  attr_reader :links_created
+  # attr_reader :links_created
 
   def initialize
     @links_created = 0
