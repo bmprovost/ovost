@@ -7,6 +7,7 @@ class OVOST::Database
     @users_created = 0
     @links = {}
     @users = {}
+
   end
 
   def gen_id
