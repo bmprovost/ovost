@@ -1,8 +1,8 @@
 class OVOST::Link
-  attr_reader :destination_url, :short_id
+  attr_reader :destination_url
 
-  def initialize(short_id, destination_url, user=nil)
-    @short_id = short_id
+  def initialize(destination_url, user=nil)
+    # @short_id = short_id
     @user = user
     @clicks = []
 
@@ -17,7 +17,7 @@ class OVOST::Link
   end
 
   def click
-    @clicks.push(0)
+    @clicks.push(Time.now)
     @destination_url
   end
 

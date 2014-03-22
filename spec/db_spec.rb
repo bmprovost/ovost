@@ -18,13 +18,14 @@ describe "Database" do
   it "can create a new Link with no user" do
     @db.instance_variable_set("@links_created", 1234567890)
     new_link = @db.create_link(@url)
-    expect(new_link).to be_a(OVOST::Link)
     expect(new_link.destination_url).to eq("http://twitter.com")
-    expect(new_link.short_id).to eq("kf12oj")
+    # expect(new_link.short_id).to eq("kf12oj")
   end
 
-  xit "stores created links in hash indexed by short_id" do
-
+  it "stores created links in hash indexed by short_id" do
+    @db.instance_variable_set("@links_created", 1234567890)
+    new_link = @db.create_link(@url)
+    expect(@db.links["kf12oj"]).to be_a(OVOST::Link)
   end
 
   xit "can create a new User" do

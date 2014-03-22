@@ -14,7 +14,7 @@ class OVOST::Database
   def create_link(url, user=nil)
        # binding.pry
     @links_created += 1
-    @links[gen_id] = OVOST::Link.new(gen_id, url, user)
+    @links[gen_id] = OVOST::Link.new(url, user)
   end
 
 end
