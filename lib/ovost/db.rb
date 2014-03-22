@@ -15,16 +15,18 @@ class OVOST::Database
   end
 
   def create_link(url, user=nil)
-       # binding.pry
     @links_created += 1
     @links[gen_id] = OVOST::Link.new(url, user)
-    @users_links.push({user_id: user.id, link_id: gen_id}) if user
+    if user
+      @users_links.push({user_id: user.user_id, link_id: gen_id})
+    end
     @links[gen_id]
   end
 
   def create_user(email, password, is_admin=false)
     @users_created += 1
     @users[@users_created] = OVOST::User.new(email, password, @users_created, is_admin)
+    @users[@users_created]
   end
 
   def get_users_links(user) #Should this take a user or an id?
