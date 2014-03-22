@@ -44,7 +44,17 @@ describe "Database" do
     expect(@db.links["kf12oj"].user.email).to eq('fake@email.com')
   end
 
-  it "can get all links created by user" do
+  it "stores a hash of {user_id: x, link_id: y} in an array if the link has a user" do
+    @db.instance_variable_set("@users_created", 0)
+    @db.instance_variable_set("@links_created", 1234567890)
+    @db.instance_variable_set("@users_links", [])
+    new_user = @db.create_user('fake@email.com', 'password')
+    new_link = @db.create_link('twitter.com', new_user)
+
+    expect(@users_links[0]).to eq({user_id: 1, link_id: "kf12oj"})
+  end
+
+  xit "can get all links created by user" do
     @db.instance_variable_set("@users_created", 0)
     @db.instance_variable_set("@links_created", 1234567890)
     new_user = @db.create_user('fake@email.com', 'password')
@@ -53,7 +63,7 @@ describe "Database" do
     @db.create_link('geocities.com', new_user)
     @db.create_link('anotherone', new_user)
 
-    all_links = @db.get_user_links(new_user)
+    all_links = @db.get_users_links(new_user)
 
     expect(all_links).to be_a(Array)
     expect(all_links.size).to eq(4)
