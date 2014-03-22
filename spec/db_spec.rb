@@ -53,7 +53,7 @@ describe "Database" do
     expect(@db.users_links[0]).to eq({user_id: 1, link_id: "kf12oj"})
   end
 
-  xit "can get all links created by user" do
+  it "can get all links created by user" do
     @db.instance_variable_set("@users_created", 0)
     @db.instance_variable_set("@links_created", 1234567890)
     new_user = @db.create_user('fake@email.com', 'password')

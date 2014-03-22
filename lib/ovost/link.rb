@@ -17,6 +17,7 @@ class OVOST::Link
   end
 
   def click
+    # Reserve for IP address of click, etc.
     @clicks.push(Time.now)
     @destination_url
   end
