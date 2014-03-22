@@ -28,7 +28,12 @@ describe "Database" do
     expect(@db.links["kf12oj"]).to be_a(OVOST::Link)
   end
 
-  xit "can create a new User" do
+  it "can create a new User" do
+    new_user = create_user('fake@email.com', 'password')
+    expect(new_user).to be_a(OVOST::User)
+  end
+
+  xit "stores users in hash" do
 
   end
 
