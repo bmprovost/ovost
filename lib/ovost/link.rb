@@ -1,5 +1,5 @@
 class OVOST::Link
-  attr_reader :destination_url
+  attr_reader :destination_url, :user
 
   def initialize(destination_url, user=nil)
     # @short_id = short_id

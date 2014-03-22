@@ -39,8 +39,12 @@ describe "Database" do
     expect(@db.users[1]).to be_a(OVOST::User)
   end
 
-  xit "can create a new link with user" do
+  it "can create a new link with user" do
+    @db.instance_variable_set("@users_created", 0)
+    @db.instance_variable_set("@links_created", 1234567890)
+    new_user = @db.create_user('fake@email.com', 'password')
+    new_link = @db.create_link('twitter.com', new_user)
 
+    expect(@db.links["kf12oj"].user.email).to eq('fake@email.com')
   end
-
 end
