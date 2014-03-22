@@ -29,12 +29,14 @@ describe "Database" do
   end
 
   it "can create a new User" do
-    new_user = create_user('fake@email.com', 'password')
+    new_user = @db.create_user('fake@email.com', 'password')
     expect(new_user).to be_a(OVOST::User)
   end
 
-  xit "stores users in hash" do
-
+  it "stores users in hash" do
+    @db.instance_variable_set("@users_created", 0)
+    new_user = @db.create_user('fake@email.com', 'password')
+    expect(@db.users[1]).to be_a(OVOST::User)
   end
 
   xit "can create a new link with user" do
