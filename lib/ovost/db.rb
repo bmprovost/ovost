@@ -5,6 +5,7 @@ class OVOST::Database
   def initialize
     @links_created = 0
     @users_created = 0
+    @total_clicks = 0
     @links = {}
     @users = {}
     @join_users_links = []

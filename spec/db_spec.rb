@@ -6,6 +6,7 @@ describe "Database" do
     @url = "twitter.com"
     @db.instance_variable_set("@links_created", 1234567890)
     @db.instance_variable_set("@users_created", 0)
+    @db.instance_variable_set("@clicks", {})
   end
 
   it "can generate a short_id" do
@@ -65,5 +66,13 @@ describe "Database" do
     new_link = @db.create_link(@url)
     link_id = new_link.link_id
     expect(@db.click_link(link_id)).to eq("http://twitter.com")
+  end
+
+  it "adds new Click to clicks hash when link is clicked" do
+    new_link = @db.create_link(@url)
+    link_id = new_link.link_id
+    @db.click_link(link_id)
+    expect(@clicks[1]).to be_a(OVOST::Click)
+    expect(@db.clicks[1].link_id).to eq(link_id)
   end
 end
