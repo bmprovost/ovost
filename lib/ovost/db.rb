@@ -45,4 +45,11 @@ class OVOST::Database
     @links[link_id].destination_url
   end
 
+  def get_links_clicks(link_id)
+    @join_links_clicks.select do |hash|
+      hash[:link_id] = link_id
+    end.map do |hash|
+      @clicks[hash[:click_id]]
+    end
+  end
 end

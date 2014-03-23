@@ -50,12 +50,13 @@ describe "Database" do
 
   it "can get all links created by user" do
     new_user = @db.create_user('fake@email.com', 'password')
+    id = new_user.user_id
     @db.create_link('twitter.com', new_user)
     @db.create_link('google.com', new_user)
     @db.create_link('geocities.com', new_user)
     @db.create_link('anotherone', new_user)
 
-    all_links = @db.get_users_links(new_user)
+    all_links = @db.get_users_links(id)
 
     expect(all_links).to be_a(Array)
     expect(all_links.size).to eq(4)
@@ -85,10 +86,10 @@ describe "Database" do
     expect(@db.join_links_clicks[0]).to eq({link_id: "kf12oj", click_id: 1})
   end
 
-  xit "can get all clicks for a link" do
+  it "can get all clicks for a link" do
     new_link = @db.create_link(@url)
     link_id = new_link.link_id
-    5.times @db.click_link(link_id)
+    5.times { @db.click_link(link_id) }
     all_clicks = @db.get_links_clicks(link_id)
     expect(all_clicks).to be_a(Array)
     expect(all_clicks.count).to eq(5)

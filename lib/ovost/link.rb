@@ -4,7 +4,6 @@ class OVOST::Link
   def initialize(link_id, destination_url, user=nil)
     @link_id = link_id
     @user = user
-    # @clicks = []
 
     if (destination_url.length < 5)
       @destination_url = "http://ovo.st"
@@ -13,14 +12,4 @@ class OVOST::Link
     else @destination_url = "http://#{destination_url}"
     end
   end
-
-  # def click
-  #   # Reserve for IP address of click, etc.
-  #   @clicks.push({time: Time.now})
-  #   @destination_url
-  # end
-
-  # def click_count
-  #   @clicks.count
-  # end
 end
