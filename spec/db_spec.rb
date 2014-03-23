@@ -76,4 +76,14 @@ describe "Database" do
     expect(@db.clicks[1].time).to be_a(Time)
     expect(@db.clicks[1].link_id).to eq(link_id)
   end
+
+  it "can get all clicks for a link" do
+    new_link = @db.create_link(@url)
+    link_id = new_link.link_id
+    5.times @db.click_link(link_id)
+    all_clicks = @db.get_links_clicks(link_id)
+    expect(all_clicks).to be_a(Array)
+    expect(all_clicks.count).to eq(5)
+    expect(all_clicks[2]).to be_a(OVOST::Click)
+  end
 end
