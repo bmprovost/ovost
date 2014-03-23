@@ -16,7 +16,7 @@ class OVOST::Database
 
   def create_link(url, user=nil)
     @links_created += 1
-    @links[gen_id] = OVOST::Link.new(url, user)
+    @links[gen_id] = OVOST::Link.new(gen_id, url, user)
     @join_users_links.push({user_id: user.user_id, link_id: gen_id}) if user
     @links[gen_id]
   end

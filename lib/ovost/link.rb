@@ -1,10 +1,10 @@
 class OVOST::Link
   attr_reader :destination_url, :user
 
-  def initialize(destination_url, user=nil)
-    # @short_id = short_id
+  def initialize(link_id, destination_url, user=nil)
+    @link_id = link_id
     @user = user
-    @clicks = []
+    # @clicks = []
 
     if (destination_url.length < 5)
       @destination_url = "http://ovo.st"
@@ -14,13 +14,13 @@ class OVOST::Link
     end
   end
 
-  def click
-    # Reserve for IP address of click, etc.
-    @clicks.push({time: Time.now})
-    @destination_url
-  end
+  # def click
+  #   # Reserve for IP address of click, etc.
+  #   @clicks.push({time: Time.now})
+  #   @destination_url
+  # end
 
-  def click_count
-    @clicks.count
-  end
+  # def click_count
+  #   @clicks.count
+  # end
 end
