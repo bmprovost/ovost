@@ -72,7 +72,8 @@ describe "Database" do
     new_link = @db.create_link(@url)
     link_id = new_link.link_id
     @db.click_link(link_id)
-    expect(@clicks[1]).to be_a(OVOST::Click)
+    expect(@db.clicks[1]).to be_a(OVOST::Click)
+    expect(@db.clicks[1].time).to be_a(Time)
     expect(@db.clicks[1].link_id).to eq(link_id)
   end
 end

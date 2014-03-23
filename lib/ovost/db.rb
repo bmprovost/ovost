@@ -1,6 +1,6 @@
 class OVOST::Database
 
-  attr_reader :links, :users, :join_users_links
+  attr_reader :links, :users, :clicks, :join_users_links
 
   def initialize
     @links_created = 0
@@ -8,6 +8,7 @@ class OVOST::Database
     @total_clicks = 0
     @links = {}
     @users = {}
+    @clicks = {}
     @join_users_links = []
   end
 
@@ -37,6 +38,8 @@ class OVOST::Database
   end
 
   def click_link(link_id)
+    @total_clicks += 1
+    @clicks[@total_clicks] = OVOST::Click.new(link_id)
     @links[link_id].destination_url
   end
 end
