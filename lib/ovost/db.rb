@@ -39,7 +39,7 @@ class OVOST::Database
 
   def click_link(link_id)
     @total_clicks += 1
-    @clicks[@total_clicks] = OVOST::Click.new(link_id)
+    @clicks[@total_clicks] = OVOST::Click.new(@total_clicks, link_id)
     @links[link_id].destination_url
   end
 end
