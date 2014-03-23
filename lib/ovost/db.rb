@@ -1,13 +1,13 @@
 class OVOST::Database
 
-  attr_reader :links, :users, :users_links
+  attr_reader :links, :users, :join_users_links
 
   def initialize
     @links_created = 0
     @users_created = 0
     @links = {}
     @users = {}
-    @users_links = []
+    @join_users_links = []
   end
 
   def gen_id
@@ -17,7 +17,7 @@ class OVOST::Database
   def create_link(url, user=nil)
     @links_created += 1
     @links[gen_id] = OVOST::Link.new(url, user)
-    @users_links.push({user_id: user.user_id, link_id: gen_id}) if user
+    @join_users_links.push({user_id: user.user_id, link_id: gen_id}) if user
     @links[gen_id]
   end
 
@@ -28,7 +28,7 @@ class OVOST::Database
   end
 
   def get_users_links(user) #Should this take a user or an id?
-    @users_links.select do |hash|
+    @join_users_links.select do |hash|
       hash[:user_id] == user.user_id
     end.map do |hash|
       @links[hash[:link_id]]

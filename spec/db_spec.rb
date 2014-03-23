@@ -50,7 +50,7 @@ describe "Database" do
     @db.instance_variable_set("@users_links", [])
     new_user = @db.create_user('fake@email.com', 'password')
     new_link = @db.create_link('twitter.com', new_user)
-    expect(@db.users_links[0]).to eq({user_id: 1, link_id: "kf12oj"})
+    expect(@db.join_users_links[0]).to eq({user_id: 1, link_id: "kf12oj"})
   end
 
   it "can get all links created by user" do
