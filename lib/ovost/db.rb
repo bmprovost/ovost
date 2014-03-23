@@ -39,10 +39,14 @@ class OVOST::Database
   end
 
   def click_link(link_id)
-    @total_clicks += 1
-    @clicks[@total_clicks] = OVOST::Click.new(@total_clicks, link_id)
-    @join_links_clicks.push({link_id: link_id, click_id: @total_clicks})
-    @links[link_id].destination_url
+    if @links.has_key?(link_id)
+      @total_clicks += 1
+      @clicks[@total_clicks] = OVOST::Click.new(@total_clicks, link_id)
+      @join_links_clicks.push({link_id: link_id, click_id: @total_clicks})
+      return @links[link_id].destination_url
+    else
+      return "http://ovo.st"
+    end
   end
 
   def get_links_clicks(link_id)
