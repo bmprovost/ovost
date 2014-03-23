@@ -42,7 +42,7 @@ describe "Database" do
   end
 
   it "stores a hash of {user_id: x, link_id: y} in an array if the link has a user" do
-    @db.instance_variable_set("@users_links", [])
+    @db.instance_variable_set("@join_users_links", [])
     new_user = @db.create_user('fake@email.com', 'password')
     new_link = @db.create_link('twitter.com', new_user)
     expect(@db.join_users_links[0]).to eq({user_id: 1, link_id: "kf12oj"})
@@ -77,7 +77,15 @@ describe "Database" do
     expect(@db.clicks[1].link_id).to eq(link_id)
   end
 
-  it "can get all clicks for a link" do
+  it "stores a hash of {link_id: x, click_id: y} in an array when link is clicked" do
+    @db.instance_variable_set("@join_links_clicks", [])
+    new_link = @db.create_link(@url)
+    link_id = new_link.link_id
+    @db.click_link(link_id)
+    expect(@db.clicks[0]).to eq({link_id: "kf12oj", click_id: 1})
+  end
+
+  xit "can get all clicks for a link" do
     new_link = @db.create_link(@url)
     link_id = new_link.link_id
     5.times @db.click_link(link_id)

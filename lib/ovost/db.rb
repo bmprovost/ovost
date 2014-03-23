@@ -10,6 +10,7 @@ class OVOST::Database
     @users = {}
     @clicks = {}
     @join_users_links = []
+    @join_links_clicks = []
   end
 
   def gen_id
@@ -42,4 +43,5 @@ class OVOST::Database
     @clicks[@total_clicks] = OVOST::Click.new(@total_clicks, link_id)
     @links[link_id].destination_url
   end
+
 end
