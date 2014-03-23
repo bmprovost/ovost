@@ -1,5 +1,5 @@
 class OVOST::User
-  attr_reader :email, :user_id
+  attr_reader :email, :user_id, :is_admin
 
   def initialize(email, password, user_id, is_admin=false)
     @email = email

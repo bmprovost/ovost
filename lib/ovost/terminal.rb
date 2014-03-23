@@ -45,7 +45,6 @@ class OVOST::Terminal
         else input
       end
     end
-
   end
 
   def input
@@ -54,10 +53,26 @@ class OVOST::Terminal
   end
 
   def create_user
+    if @control[4] == "true"
+      user = @database.create_user(@control[2], @control[3], true)
+      puts "Admin created with ID: #{user.user_id} Email: #{@control[2]}"
+    else
+      user = @database.create_user(@control[2], @control[3])
+      puts "User created with ID: #{user.user_id} Email: #{@control[2]}"
+    end
     input
   end
 
   def list_users
+    @database.users.each do |user_id, user|
+      puts "ID:\tEmail:\t\tAdmin:"
+      print "#{user_id}\t\t#{user.email}\t"
+      if user.is_admin
+        puts "X"
+      else
+        puts ""
+      end
+    end
     input
   end
 
