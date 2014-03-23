@@ -13,15 +13,15 @@ class OVOST::Database
     @join_links_clicks = []
   end
 
-  def gen_id
+  def gen_link_id
     @links_created.to_s(36)
   end
 
   def create_link(url, user_id=nil)
     @links_created += 1
-    @links[gen_id] = OVOST::Link.new(gen_id, url, user_id)
-    @join_users_links.push({user_id: user_id, link_id: gen_id}) if user_id.is_a? Integer
-    @links[gen_id]
+    @links[gen_link_id] = OVOST::Link.new(gen_link_id, url, user_id)
+    @join_users_links.push({user_id: user_id, link_id: gen_link_id}) if user_id.is_a? Integer
+    @links[gen_link_id]
   end
 
   def create_user(email, password, is_admin=false)

@@ -10,7 +10,7 @@ describe "Database" do
   end
 
   it "can generate a short_id" do
-    expect(@db.gen_id).to eq("kf12oi")
+    expect(@db.gen_link_id).to eq("kf12oi")
   end
 
   it "can create a new Link with no user" do
