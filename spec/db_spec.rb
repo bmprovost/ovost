@@ -82,7 +82,7 @@ describe "Database" do
     new_link = @db.create_link(@url)
     link_id = new_link.link_id
     @db.click_link(link_id)
-    expect(@db.clicks[0]).to eq({link_id: "kf12oj", click_id: 1})
+    expect(@db.join_links_clicks[0]).to eq({link_id: "kf12oj", click_id: 1})
   end
 
   xit "can get all clicks for a link" do
