@@ -34,4 +34,8 @@ class OVOST::Database
       @links[hash[:link_id]]
     end
   end
+
+  def click_link(link_id)
+    @links[link_id].destination_url
+  end
 end
