@@ -16,20 +16,6 @@ describe "Link" do
   end
 
   it "prepends an http:// on links with no protocol" do
-    # link = OVOST::Link.new("twitter.com")
     expect(@link.destination_url).to eq("http://twitter.com")
   end
-
-  # it "increments counter when clicked" do
-  #   # link = OVOST::Link.new("twitter.com")
-  #   expect(@link.click_count).to eq(0)
-  #   @link.click
-  #   expect(@link.click_count).to eq(1)
-  #   @link.click
-  #   expect(@link.click_count).to eq(2)
-  # end
-
-  # it "returns destination_url when clicked" do
-  #   expect(@link.click).to eq("http://twitter.com")
-  # end
 end

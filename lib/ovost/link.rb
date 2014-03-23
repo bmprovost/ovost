@@ -1,9 +1,9 @@
 class OVOST::Link
-  attr_reader :destination_url, :user, :link_id
+  attr_reader :destination_url, :user_id, :link_id
 
-  def initialize(link_id, destination_url, user=nil)
+  def initialize(link_id, destination_url, user_id=nil)
     @link_id = link_id
-    @user = user
+    @user_id = user_id
 
     if (destination_url.length < 5)
       @destination_url = "http://ovo.st"
