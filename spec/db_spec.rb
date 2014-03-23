@@ -78,7 +78,7 @@ describe "Database" do
   end
 
   it "stores a hash of {link_id: x, click_id: y} in an array when link is clicked" do
-new_link = @db.create_link(@url)
+    new_link = @db.create_link(@url)
     link_id = new_link.link_id
     @db.click_link(link_id)
     expect(@db.join_links_clicks[0]).to eq({link_id: "kf12oj", click_id: 1})
@@ -100,18 +100,9 @@ new_link = @db.create_link(@url)
     expect(@db.links["kf12oj"].destination_url).to eq("http://google.com")
   end
 
-  # it "get_users_links returns nil if user_id is not an existing user" do
-  #   all_links = @db.get_users_links(999)
-  #   expect(all_links).to eq(nil)
-  # end
-
   it "click_link returns http://ovo.st but does not create new clicks if link_id is not an existing link" do
     bad_link = @db.click_link("idontexist")
     expect(bad_link).to eq("http://ovo.st")
     expect(@db.clicks).to eq({})
-  end
-
-  xit "get_links_clicks returns nil if link_id is not an existing link" do
-
   end
 end
