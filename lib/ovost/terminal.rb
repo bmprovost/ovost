@@ -64,9 +64,9 @@ class OVOST::Terminal
   end
 
   def list_users
+    puts "ID:\tEmail:\t\t\t\tAdmin:"
     @database.users.each do |user_id, user|
-      puts "ID:\tEmail:\t\tAdmin:"
-      print "#{user_id}\t\t#{user.email}\t"
+      print "#{user_id}\t#{user.email}\t\t\t"
       if user.is_admin
         puts "X"
       else
@@ -77,22 +77,42 @@ class OVOST::Terminal
   end
 
   def list_user_links
+    puts "Link ID:\tDestination URL:"
+    @database.get_users_links(@control[2].to_i).each do |link|
+      puts "#{link.link_id}\t\t#{link.destination_url}"
+    end
     input
   end
 
   def create_link
+    if @control[3]
+      link = @database.create_link(@control[2], @control[3].to_i)
+      puts "User #{link.user_id} created link with ID: #{link.link_id} Destination URL: #{link.destination_url}"
+    else
+      link = @database.create_link(@control[2])
+      puts "Link created with ID: #{link.link_id} Destination URL: #{link.destination_url}"
+    end
     input
   end
 
   def list_links
+    puts "Link ID:\tUser ID:\tDestination URL:"
+    @database.links.each do |link_id, link|
+      puts "#{link_id}\t\t#{link.user_id}\t\t#{link.destination_url}"
+    end
     input
   end
 
   def list_link_clicks
+    puts "Click ID:\tClick Time:"
+    @database.get_links_clicks(@control[2]).each do |click|
+      puts "#{click.click_id}\t\t#{click.time}"
+    end
     input
   end
 
   def click
+    puts @database.click_link(@control[1])
     input
   end
 end
