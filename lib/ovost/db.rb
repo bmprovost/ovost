@@ -1,4 +1,7 @@
+require 'singleton'
+
 class OVOST::Database
+  include Singleton
 
   attr_reader :links, :users, :clicks, :join_users_links, :join_links_clicks
 
